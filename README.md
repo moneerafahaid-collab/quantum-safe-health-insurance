@@ -1,13 +1,13 @@
 # Quantum-Safe Health Insurance
 
-وسيط تأمين صحي يربط منصة نفيس بمحرك كشف تكرار المطالبات، مع تعمية هوية المريض وتشفير الحمولة قبل إرسال القرار لشبكة التأمين.
+وسيط تأمين صحي محاكي يُربط بشبكة IBM Quantum لإعطاء نتائج كوانتية وتشغيل تجربة الاختبار على مطالبات نفيس، مع تعمية هوية المريض وتشفير الحمولة قبل إرسال القرار لشبكة التأمين.
 
-This is a working demo of the architecture in the original prototype: HIPAA-style de-identification, a QGNN consistency engine, and NPHIES middleware.
+This simulated system connects to the IBM Quantum Network to produce quantum scoring results and run test experiments, then applies HIPAA-style de-identification and NPHIES middleware.
 
 ## What it does
 
 1. **Security layer** — HMAC-SHA256 anonymizes patient + national ID. Fernet (AES) encrypts payloads in transit and medical text at rest.
-2. **QGNN engine** — turns the medical justification into a stable embedding, then scores Jaccard + cosine similarity against the same patient's prior procedures.
+2. **IBM Quantum / QGNN** — the claim justification is scored through a quantum test path linked to the IBM Quantum Network, then compared with the patient's prior procedures.
 3. **NPHIES middleware** — accepts a claim JSON, loads encrypted history, decides approval / review / rejection, and returns an encrypted response.
 4. **ER hospital fraud** — emergency claims are checked for items the patient is not entitled to. Vital operations (CPR, intubation, hemorrhage control) are approved on triage points alone.
 5. **Ops dashboard** — Arabic RTL console to submit demo claims, inspect scores, and read the audit trail.

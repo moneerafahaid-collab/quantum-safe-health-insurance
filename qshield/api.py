@@ -27,7 +27,7 @@ def create_app(store: ClaimStore | None = None) -> FastAPI:
 
     app = FastAPI(
         title="Quantum-Safe Health Insurance",
-        description="Quantum-safe NPHIES claim consistency engine",
+        description="Simulated NPHIES middleware linked to the IBM Quantum Network for quantum results and test experiments",
         version=__version__,
     )
     app.state.store = store
