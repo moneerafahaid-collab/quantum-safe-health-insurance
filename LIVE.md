@@ -2,6 +2,6 @@
 
 Published from this GitHub repository:
 
-https://ruled-adrian-thesis-footage.trycloudflare.com
+https://anybody-commissioners-designs-flashers.trycloudflare.com
 
 This URL stays up while the GitHub Actions run is active.
