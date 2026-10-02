@@ -28,6 +28,9 @@ Open [http://127.0.0.1:8080](http://127.0.0.1:8080). The first tab is a committe
 
 The app is ready to publish: it reads the host `PORT` for Render/Railway, and includes `Dockerfile` plus `render.yaml`.
 
+To raise the live server from this same GitHub repo, run the **Publish server from GitHub** workflow:
+https://github.com/moneerafahaid-collab/quantum-safe-health-insurance/actions/workflows/publish-server.yml
+
 | Command | Purpose |
 | --- | --- |
 | `python -m qshield demo` | Same duplicate MRI justification as the original script |
