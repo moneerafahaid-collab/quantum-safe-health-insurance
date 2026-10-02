@@ -24,7 +24,10 @@ python -m qshield demo
 python -m qshield serve
 ```
 
-Open [http://127.0.0.1:8080](http://127.0.0.1:8080). The first tab is a committee briefing for the simulated NPHIES system.
+واجهة اللجنة الثابتة (تعمل من أي جهاز وفي أي وقت):
+https://moneerafahaid-collab.github.io/quantum-safe-health-insurance/
+
+Open [http://127.0.0.1:8080](http://127.0.0.1:8080) for the full Python API. The first tab is a committee briefing for the simulated NPHIES system.
 
 The live server is published from this same GitHub repo via **Actions → Publish server from GitHub**:
 https://github.com/moneerafahaid-collab/quantum-safe-health-insurance/actions/workflows/publish-server.yml

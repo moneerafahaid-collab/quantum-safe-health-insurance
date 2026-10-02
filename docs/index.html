@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quantum-Safe Health Insurance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body>
+  <div class="lattice"></div>
+  <header class="topbar">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M24 4 8 12v12c0 11 7.2 18.8 16 22 8.8-3.2 16-11 16-22V12L24 4z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="24" cy="22" r="5" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M24 17v-4M24 31v-4M19 22h-4M33 22h-4" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      <div>
+        <strong>Quantum-Safe Health Insurance</strong>
+        <span>واجهة اللجنة — محاكاة نفيس وIBM Quantum</span>
+      </div>
+    </div>
+    <div class="top-meta">
+      <span class="chip">واجهة ثابتة للجنة</span>
+      <span class="chip">IBM Quantum Network</span>
+      <span class="chip muted">v2.6.0</span>
+      <button id="reset-demo" class="ghost" type="button">إعادة تهيئة العرض</button>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab is-active" data-view="committee" type="button">هدف النظام</button>
+    <button class="tab" data-view="overview" type="button">لوحة القرار</button>
+    <button class="tab" data-view="intake" type="button">تشغيل المحاكاة</button>
+    <button class="tab" data-view="ledger" type="button">السجل والتدقيق</button>
+  </nav>
+
+  <main>
+    <section id="view-committee" class="view is-active">
+      <article class="panel brief">
+        <p class="eyebrow">هدف النظام</p>
+        <h1>Quantum-Safe Health Insurance</h1>
+        <p class="lead">نظام محاكي لوسيط نفيس يُربط بشبكة IBM Quantum لإعطاء نتائج كوانتية وتشغيل تجربة الاختبار. يعمّي هوية المريض، يرصد تكرار المطالبات، ويكشف تلاعب التأمين في قسم الطوارئ عندما يُطلب ما لا أحقية للمريض به. العمليات الحيوية تُقبل بالنقاط فقط.</p>
+      </article>
+      <div class="layers">
+        <article class="panel layer">
+          <span>01</span>
+          <h2>حماية HIPAA</h2>
+          <p>تعمية الهوية وتشفير الحمولة الطبية قبل أي قرار لشبكة التأمين.</p>
+        </article>
+        <article class="panel layer">
+          <span>02</span>
+          <h2>IBM Quantum Network</h2>
+          <p>ربط المحرك بشبكة IBM Quantum لإعطاء نتائج كوانتية وتجربة الاختبار على المطالبة.</p>
+        </article>
+        <article class="panel layer">
+          <span>03</span>
+          <h2>طوارئ وأحقية</h2>
+          <p>رفض الرنين والجناح الخاص والتجميل بلا أحقية، وقبول الإنعاش بالنقاط.</p>
+        </article>
+      </div>
+      <div class="script">
+        <article class="panel">
+          <header>
+            <h2>سيناريوهات العرض</h2>
+            <p>ثلاث دقائق تكفي لإثبات القرار الآلي أمام اللجنة.</p>
+          </header>
+          <ol class="demo-steps">
+            <li><strong>تكرار الأشعة:</strong> نفس تبرير الرنين من طبيب مختلف → مرفوضة لتكرار.</li>
+            <li><strong>إنعاش طوارئ:</strong> 82 نقطة على عملية حيوية → مقبولة بالنقاط فقط.</li>
+            <li><strong>تلاعب مستشفى:</strong> رنين + جناح خاص + تجميل بنقاط منخفضة → تلاعب طوارئ.</li>
+          </ol>
+          <button class="primary" id="start-committee-demo" type="button">ابدأ المحاكاة الآن</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="view-overview" class="view">
+      <div class="kpis" id="kpis"></div>
+      <div class="split">
+        <article class="panel">
+          <header>
+            <h2>آخر القرارات</h2>
+            <p>نتائج المحرك على مطالبات نفيس بعد تعمية الهوية.</p>
+          </header>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>المطالبة</th>
+                  <th>الإجراء</th>
+                  <th>القرار</th>
+                  <th>القسم</th>
+                  <th>الزمن</th>
+                </tr>
+              </thead>
+              <tbody id="recent-claims"></tbody>
+            </table>
+          </div>
+        </article>
+        <article class="panel">
+          <header>
+            <h2>مسار التدقيق</h2>
+            <p>أحداث بدون رقم هوية وطني.</p>
+          </header>
+          <ol class="audit" id="audit-feed"></ol>
+        </article>
+      </div>
+    </section>
+
+    <section id="view-intake" class="view">
+      <div class="split intake">
+        <article class="panel">
+          <header>
+            <h2>طلب وارد من نفيس</h2>
+            <p>اختر سيناريو جاهزاً. المحاكاة تعمل داخل المتصفح لعرض اللجنة.</p>
+          </header>
+          <div class="scenarios" id="scenarios"></div>
+          <form id="claim-form">
+            <div class="grid-2">
+              <label>رقم المعاملة <input name="transaction_id" required /></label>
+              <label>رقم المطالبة <input name="claim_id" required /></label>
+              <label>معرف المريض <input name="patient_id" required /></label>
+              <label>رقم الهوية <input name="national_id" required /></label>
+              <label>شفرة الإجراء <input name="procedure_code" required /></label>
+              <label>معرف الطبيب <input name="doctor_id" required /></label>
+              <label>القسم
+                <select name="department">
+                  <option value="OUTPATIENT">عيادة</option>
+                  <option value="ER">طوارئ</option>
+                  <option value="INPATIENT">تنويم</option>
+                </select>
+              </label>
+              <label>المستشفى <input name="hospital_id" placeholder="HOSP-HAIL-01" /></label>
+              <label>نقاط الحالة الحيوية (0–100)
+                <input name="triage_points" type="number" min="0" max="100" value="0" />
+              </label>
+              <label>شريحة الوثيقة
+                <select name="policy_tier">
+                  <option value="BASIC">أساسي</option>
+                  <option value="ESSENTIAL">أساسي موسع</option>
+                  <option value="PREMIUM">شامل</option>
+                </select>
+              </label>
+            </div>
+            <label>طلبات إضافية (مفصولة بفاصلة)
+              <input name="requested_items" placeholder="PRIVATE-SUITE-01, MRI-LUMBAR-01" />
+            </label>
+            <label>التبرير الطبي
+              <textarea name="justification" rows="5" required></textarea>
+            </label>
+            <button class="primary" type="submit">تشغيل الطبقة الوسيطة</button>
+          </form>
+        </article>
+        <article class="panel result-panel" id="result-panel">
+          <header>
+            <h2>نتيجة QGNN</h2>
+            <p>نتائج كوانتية عبر IBM Quantum Network قبل الإرسال لشبكة التأمين.</p>
+          </header>
+          <div id="result-empty" class="empty">لم تُعالج أي مطالبة بعد في هذه الجلسة.</div>
+          <div id="result-body" class="hidden">
+            <div class="decision-hero">
+              <div>
+                <span class="eyebrow">القرار</span>
+                <strong id="result-decision"></strong>
+              </div>
+              <div class="meters">
+                <div><span>الاتساق</span><b id="m-consistency">0</b></div>
+                <div><span>التشابه</span><b id="m-similarity">0</b></div>
+                <div><span>النقاط</span><b id="m-points">0</b></div>
+                <div><span>تلاعب</span><b id="m-fraud">0</b></div>
+              </div>
+            </div>
+            <p class="hash-line">هاش المريض: <code id="result-hash"></code></p>
+            <h3>أحقية الطوارئ</h3>
+            <ul id="result-entitlement"></ul>
+            <h3>التحذيرات</h3>
+            <ul id="result-warnings"></ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="view-ledger" class="view">
+      <article class="panel">
+        <header>
+          <h2>سجل المطالبات</h2>
+          <p>سجل العرض يُحفظ محلياً في المتصفح لهذه الجلسة.</p>
+        </header>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>الوقت</th>
+                <th>المعاملة</th>
+                <th>المطالبة</th>
+                <th>الطبيب</th>
+                <th>الإجراء</th>
+                <th>القرار</th>
+                <th>التبرير</th>
+              </tr>
+            </thead>
+            <tbody id="ledger-body"></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
