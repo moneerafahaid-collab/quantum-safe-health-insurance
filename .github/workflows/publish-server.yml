@@ -1,0 +1,71 @@
+name: Publish server from GitHub
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  serve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install app
+        run: pip install -r requirements.txt
+
+      - name: Install cloudflared
+        run: |
+          curl -fsSL -o cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
+          chmod +x cloudflared
+
+      - name: Start server and publish public URL
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          python -m qshield serve --host 127.0.0.1 --port 8080 > server.log 2>&1 &
+          for i in $(seq 1 40); do
+            if curl -fsS http://127.0.0.1:8080/api/health >/dev/null; then
+              echo "App is ready"
+              break
+            fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:8080/api/health >/dev/null
+
+          ./cloudflared tunnel --no-autoupdate --url http://127.0.0.1:8080 > tunnel.log 2>&1 &
+          URL=""
+          for i in $(seq 1 45); do
+            URL=$(grep -oE 'https://[a-z0-9-]+\.trycloudflare\.com' tunnel.log | head -n1 || true)
+            if [ -n "$URL" ]; then
+              break
+            fi
+            sleep 2
+          done
+          if [ -z "$URL" ]; then
+            echo "Could not obtain public tunnel URL"
+            cat tunnel.log
+            cat server.log
+            exit 1
+          fi
+          echo "## Quantum-Safe Health Insurance is live" >> "$GITHUB_STEP_SUMMARY"
+          echo "$URL" >> "$GITHUB_STEP_SUMMARY"
+          printf '%s\n' "# Live server" "" "Published from this GitHub repository:" "" "$URL" "" "This URL stays up while the GitHub Actions run is active." > LIVE.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add LIVE.md
+          git commit -m "Publish live server URL from GitHub Actions" || true
+          git pull --rebase origin main || true
+          git push origin HEAD:main || true
+          echo "Public URL: $URL"
+          sleep 21000

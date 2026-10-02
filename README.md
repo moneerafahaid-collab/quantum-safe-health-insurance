@@ -26,7 +26,8 @@ python -m qshield serve
 
 Open [http://127.0.0.1:8080](http://127.0.0.1:8080). The first tab is a committee briefing for the simulated NPHIES system.
 
-The app is ready to publish from this same GitHub repo. It reads the host `PORT` and includes `Dockerfile` plus `render.yaml`.
+The live server is published from this same GitHub repo via **Actions → Publish server from GitHub**:
+https://github.com/moneerafahaid-collab/quantum-safe-health-insurance/actions/workflows/publish-server.yml
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/moneerafahaid-collab/quantum-safe-health-insurance)
 
