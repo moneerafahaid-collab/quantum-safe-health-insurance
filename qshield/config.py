@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     encryption_key: str = ""
     similarity_threshold: float = 0.85
     review_threshold: float = 0.60
-    host: str = "127.0.0.1"
+    host: str = "0.0.0.0"
     port: int = 8080
     database_path: Path = DATA_DIR / "qshield.db"
     key_file: Path = DATA_DIR / ".encryption_key"

@@ -229,6 +229,14 @@ async function boot() {
     }
   });
 
+  const startDemo = $("start-committee-demo");
+  if (startDemo) {
+    startDemo.addEventListener("click", () => {
+      const intake = document.querySelector('[data-view="intake"]');
+      if (intake) intake.click();
+    });
+  }
+
   $("reset-demo").addEventListener("click", async () => {
     await api("/api/demo/reset", { method: "POST" });
     $("result-body").classList.add("hidden");

@@ -24,6 +24,7 @@
       </div>
     </div>
     <div class="top-meta">
+      <span class="chip">نظام محاكي للجنة</span>
       <span class="chip">{{ engine }}</span>
       <span class="chip muted">v{{ version }}</span>
       <button id="reset-demo" class="ghost" type="button">إعادة تهيئة العرض</button>
@@ -31,13 +32,53 @@
   </header>
 
   <nav class="tabs" role="tablist">
-    <button class="tab is-active" data-view="overview" type="button">لوحة القرار</button>
-    <button class="tab" data-view="intake" type="button">معالجة مطالبة نفيس</button>
+    <button class="tab is-active" data-view="committee" type="button">عرض اللجنة</button>
+    <button class="tab" data-view="overview" type="button">لوحة القرار</button>
+    <button class="tab" data-view="intake" type="button">تشغيل المحاكاة</button>
     <button class="tab" data-view="ledger" type="button">السجل والتدقيق</button>
   </nav>
 
   <main>
-    <section id="view-overview" class="view is-active">
+    <section id="view-committee" class="view is-active">
+      <article class="panel brief">
+        <p class="eyebrow">عرض محاكاة أمام اللجنة</p>
+        <h1>Quantum-Safe Health Insurance</h1>
+        <p class="lead">نظام محاكي لوسيط نفيس يعمّي هوية المريض، يرصد تكرار المطالبات، ويكشف تلاعب التأمين في قسم الطوارئ عندما يُطلب ما لا أحقية للمريض به. العمليات الحيوية تُقبل بالنقاط فقط.</p>
+      </article>
+      <div class="layers">
+        <article class="panel layer">
+          <span>01</span>
+          <h2>حماية HIPAA</h2>
+          <p>تعمية الهوية وتشفير الحمولة الطبية قبل أي قرار لشبكة التأمين.</p>
+        </article>
+        <article class="panel layer">
+          <span>02</span>
+          <h2>محرك QGNN</h2>
+          <p>مقارنة التبرير الطبي مع سجل المريض لرصد النسخ والتكرار.</p>
+        </article>
+        <article class="panel layer">
+          <span>03</span>
+          <h2>طوارئ وأحقية</h2>
+          <p>رفض الرنين والجناح الخاص والتجميل بلا أحقية، وقبول الإنعاش بالنقاط.</p>
+        </article>
+      </div>
+      <div class="script">
+        <article class="panel">
+          <header>
+            <h2>سيناريوهات العرض</h2>
+            <p>ثلاث دقائق تكفي لإثبات القرار الآلي أمام اللجنة.</p>
+          </header>
+          <ol class="demo-steps">
+            <li><strong>تكرار الأشعة:</strong> نفس تبرير الرنين من طبيب مختلف → مرفوضة لتكرار.</li>
+            <li><strong>إنعاش طوارئ:</strong> 82 نقطة على عملية حيوية → مقبولة بالنقاط فقط.</li>
+            <li><strong>تلاعب مستشفى:</strong> رنين + جناح خاص + تجميل بنقاط منخفضة → تلاعب طوارئ.</li>
+          </ol>
+          <button class="primary" id="start-committee-demo" type="button">ابدأ المحاكاة الآن</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="view-overview" class="view">
       <div class="kpis" id="kpis"></div>
       <div class="split">
         <article class="panel">
