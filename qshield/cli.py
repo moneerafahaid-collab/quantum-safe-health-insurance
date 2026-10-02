@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 
 import uvicorn
@@ -22,7 +23,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     command = args.command or "serve"
     host = getattr(args, "host", settings.host)
-    port = getattr(args, "port", settings.port)
+    port = int(os.environ.get("PORT") or getattr(args, "port", settings.port))
 
     if command == "demo":
         result = run_console_demo()

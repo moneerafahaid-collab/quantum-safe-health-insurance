@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: quantum-safe-health-insurance
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m qshield serve --host 0.0.0.0 --port $PORT

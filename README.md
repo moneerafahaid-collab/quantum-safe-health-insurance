@@ -26,6 +26,8 @@ python -m qshield serve
 
 Open [http://127.0.0.1:8080](http://127.0.0.1:8080). The first tab is a committee briefing for the simulated NPHIES system.
 
+The app is ready to publish: it reads the host `PORT` for Render/Railway, and includes `Dockerfile` plus `render.yaml`.
+
 | Command | Purpose |
 | --- | --- |
 | `python -m qshield demo` | Same duplicate MRI justification as the original script |
