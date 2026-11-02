@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>ملف تعريفي — Quantum-Safe Health Insurance</title>
+  <style>
+    @page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: #102226;
+      font: 11pt/1.6 "Segoe UI", Tahoma, "Traditional Arabic", sans-serif;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-top: 3px solid #147a72;
+      padding-top: 8px;
+      margin-bottom: 18px;
+    }
+    header strong { color: #147a72; font-size: 11pt; }
+    header span { color: #5a6e72; font-size: 10pt; }
+    h1 { font-size: 20pt; margin: 0 0 6px; text-align: center; }
+    .subtitle { text-align: center; color: #147a72; font-weight: 700; margin: 0 0 4px; }
+    .meta { text-align: center; color: #5a6e72; font-size: 10.5pt; margin: 0 0 18px; }
+    h2 {
+      color: #147a72;
+      font-size: 12.5pt;
+      margin: 12px 0 6px;
+      padding-right: 10px;
+      border-right: 4px solid #147a72;
+    }
+    p, li { margin: 0 0 8px; }
+    ol, ul { padding-right: 22px; }
+    table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 10.5pt; }
+    th, td { border: 1px solid #d5e0e0; padding: 5px 8px; text-align: right; }
+    th { background: #147a72; color: #fff; font-weight: 700; }
+    tr:nth-child(even) td { background: #f4f9f8; }
+    .flow {
+      background: #ecf7f6;
+      color: #147a72;
+      font-weight: 700;
+      text-align: center;
+      padding: 10px 12px;
+      margin: 8px 0 12px;
+    }
+    .note { font-size: 10.5pt; color: #33484c; }
+    a { color: #147a72; text-decoration: none; }
+    .url {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: right;
+      font-size: 10.5pt;
+      color: #147a72;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>ملف تعريفي</strong>
+    <span>Quantum-Safe Health Insurance — الإصدار 2.6.0</span>
+  </header>
+
+  <h1>Quantum-Safe Health Insurance</h1>
+  <p class="subtitle">نظام محاكي لوسيط نفيس مربوط بشبكة IBM Quantum</p>
+  <p class="meta">المحرك: QGNN-v2.6-IBM-Quantum-Network</p>
+
+  <h2>1. تعريف النظام</h2>
+  <p>Quantum-Safe Health Insurance وسيط تأمين صحي محاكٍ يقف بين منصة نفيس وشبكات التأمين. يستقبل المطالبة الطبية، يعمّي هوية المريض، يقيّم التبرير عبر مسار اختبار كوانتي مربوط بشبكة IBM Quantum، ثم يعيد قراراً مشفّراً: قبول، مراجعة، رفض تكرار، رفض بلا أحقية، أو رصد تلاعب مستشفى في الطوارئ.</p>
+  <p>النظام معروض للجنة كمحاكاة معمارية تشغيلية، وليس تكاملاً إنتاجياً معتمداً مع نفيس أو HIPAA.</p>
+
+  <h2>2. الهدف</h2>
+  <p>حماية قرار التأمين الصحي من ثلاثة أخطار شائعة:</p>
+  <ol>
+    <li>تسرب هوية المريض ورقم الهوية الوطنية.</li>
+    <li>تكرار المطالبة نفسها بتبرير طبي منسوخ من طبيب مختلف.</li>
+    <li>تلاعب قسم الطوارئ بطلب إجراءات لا أحقية للمريض بها، مع الإبقاء على قبول العمليات الحيوية بالنقاط فقط.</li>
+  </ol>
+
+  <h2>3. ماذا يعالج؟</h2>
+  <table>
+    <thead>
+      <tr><th>المشكلة</th><th>قرار النظام</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>نفس تبرير الرنين من طبيب آخر</td><td>مرفوضة — تكرار</td></tr>
+      <tr><td>تحليل مخبري جديد لنفس المريض</td><td>مقبولة</td></tr>
+      <tr><td>تشابه جزئي في التبرير</td><td>مراجعة يدوية</td></tr>
+      <tr><td>إنعاش أو تنبيب بنقاط حيوية كافية</td><td>مقبولة — عملية حيوية بالنقاط</td></tr>
+      <tr><td>رنين أو جناح خاص أو تجميل من الطوارئ بلا أحقية</td><td>تلاعب مستشفى — طوارئ</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4. طبقات النظام</h2>
+  <p><strong>الطبقة الأولى — حماية HIPAA</strong></p>
+  <ul>
+    <li>تعمية هوية المريض ورقم الهوية بـ HMAC-SHA256 مع ملح سري.</li>
+    <li>لا يُحفظ الرقم الوطني في السجل.</li>
+    <li>تشفير الحمولة الطبية أثناء النقل وفي قاعدة البيانات بـ Fernet (AES).</li>
+  </ul>
+  <p><strong>الطبقة الثانية — IBM Quantum / QGNN</strong></p>
+  <ul>
+    <li>تحويل التبرير الطبي إلى متجه حالة كوانتية محاكاة.</li>
+    <li>مقارنة المطالبة الحالية بسجل المريض لنفس الإجراء.</li>
+    <li>قياس التشابه اللفظي (Jaccard) والتشابه الكوانتي (Cosine).</li>
+    <li>رفض قاطع عند تطابق لفظي مرتفع (0.85 فأكثر)، ومراجعة يدوية عند تشابه متوسط (0.60 فأكثر).</li>
+  </ul>
+  <p><strong>الطبقة الثالثة — أحقية الطوارئ</strong></p>
+  <ul>
+    <li>تُفحص مطالبات قسم الطوارئ فقط.</li>
+    <li>العمليات الحيوية (إنعاش، تنبيب، صدمات، نزيف، مذيب جلطة) تُقبل إذا بلغت نقاط الحالة الحد المطلوب، حتى على وثيقة أساسية.</li>
+    <li>الرنين الاختياري والجناح الخاص والتجميل من الطوارئ تُرصد تلاعباً إذا لم تكن مشمولة في الوثيقة.</li>
+  </ul>
+  <p><strong>الطبقة الرابعة — وسيط نفيس</strong></p>
+  <ul>
+    <li>استقبال مطالبة JSON.</li>
+    <li>تحميل السجل المشفّر للمريض بعد تعمية الهوية.</li>
+    <li>إصدار القرار النهائي وإرجاع حمولة مشفرة مع معاينة للعرض فقط.</li>
+  </ul>
+
+  <h2>5. مسار المطالبة</h2>
+  <p class="flow">نفيس ← تعمية الهوية ← QGNN / IBM Quantum ← أحقية الطوارئ ← قرار مشفّر للتأمين</p>
+  <p>القرار النهائي يعطي أولوية لرصد التلاعب ورفض الأحقية على نتيجة التشابه، ثم يقبل العملية الحيوية بالنقاط، ثم يعتمد نتيجة المحرك الكوانتي.</p>
+
+  <h2>6. سيناريوهات العرض أمام اللجنة</h2>
+  <p>ثلاث دقائق تكفي لإثبات القرار الآلي:</p>
+  <ol>
+    <li>تكرار الأشعة: نفس تبرير الرنين من طبيب مختلف → مرفوضة لتكرار.</li>
+    <li>إنعاش طوارئ: 82 نقطة على عملية حيوية → مقبولة بالنقاط فقط.</li>
+    <li>تلاعب مستشفى: رنين + جناح خاص + تجميل بنقاط منخفضة → تلاعب طوارئ.</li>
+  </ol>
+
+  <h2>7. قرارات النظام</h2>
+  <table>
+    <thead>
+      <tr><th>الرمز</th><th>المعنى</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>APPROVED</td><td>مطالبة مقبولة</td></tr>
+      <tr><td>APPROVED_VITAL_POINTS</td><td>عملية حيوية مقبولة بالنقاط</td></tr>
+      <tr><td>REJECTED_DUPLICATE</td><td>مرفوضة لتكرار التبرير</td></tr>
+      <tr><td>REJECTED_NOT_ENTITLED</td><td>مرفوضة بلا أحقية</td></tr>
+      <tr><td>HOSPITAL_FRAUD</td><td>تلاعب مستشفى في الطوارئ</td></tr>
+      <tr><td>MANUAL_REVIEW</td><td>تحتاج مراجعة بشرية</td></tr>
+    </tbody>
+  </table>
+
+  <h2>8. رابط واجهة اللجنة</h2>
+  <p>واجهة ثابتة تعمل من أي جهاز دون سيرفر مؤقت:</p>
+  <p class="url">https://moneerafahaid-collab.github.io/quantum-safe-health-insurance/</p>
+  <p>المستودع:</p>
+  <p class="url">https://github.com/moneerafahaid-collab/quantum-safe-health-insurance</p>
+
+  <h2>9. ملاحظة للجنة</h2>
+  <p class="note">هذا عرض محاكٍ للهندسة والقرار الآلي. لا يُعد ربطاً إنتاجياً معتمداً مع نفيس أو شبكة IBM Quantum أو شهادة HIPAA. البيانات المستخدمة بيانات تجريبية، ورقم الهوية لا يُخزَّن بعد التعمية.</p>
+</body>
+</html>

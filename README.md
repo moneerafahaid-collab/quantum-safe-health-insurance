@@ -27,8 +27,7 @@ python -m qshield serve
 واجهة اللجنة الثابتة (تعمل من أي جهاز وفي أي وقت):
 https://moneerafahaid-collab.github.io/quantum-safe-health-insurance/
 
-الملف التعريفي للجنة:
-https://moneerafahaid-collab.github.io/quantum-safe-health-insurance/profile.html
+الملف التعريفي للجنة ملف PDF مستقل: `ملف-تعريفي.pdf`
 
 Open [http://127.0.0.1:8080](http://127.0.0.1:8080) for the full Python API. The first tab is a committee briefing for the simulated NPHIES system.
 
