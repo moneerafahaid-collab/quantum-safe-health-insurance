@@ -89,7 +89,12 @@ body { position: relative; overflow-x: hidden; }
 
 .chip { font-size: 12px; color: var(--teal); }
 .chip.muted { color: var(--muted); }
-.ghost { cursor: pointer; }
+.ghost, a.ghost, a.primary {
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
 .ghost:hover, .tab:hover, .scenario:hover { border-color: var(--teal); }
 
 .tabs {
